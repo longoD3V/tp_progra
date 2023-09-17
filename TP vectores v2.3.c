@@ -173,44 +173,84 @@ void segunda_opcion(int vector1[10], int vector2[10]){
     }
 }
 
-/*void tercera_opcion(int vector1[10],int vector2[10]){
+void tercera_opcion(int vector1[10],int vector2[10]){
 
+    int i,j,k,repetido;
+    int unionVector[2*10];
 
-    int vector1_final [] = {};
-    int vector2_final [] = {};
-    int total1,total2;
+    k = 0;
 
-        for (int i = 0;i<10 ;i++ )
-        {
-            if (vector1[i] != vector1[i])
-            {
-                vector1_final[i] = vector1[i];
+        for (i = 0; i < 10; i++) {
+            repetido = 0;
+            for (j = 0; j < k; j++) {
+                if (vector1[i] == unionVector[j]) {
+                repetido = 1;
+                break;
+                }
+            }
+            if (!repetido) {
+                unionVector[k] = vector1[i];
+                k++;
             }
         }
-
-        printf("\n");
-        for (int i = 0;i<10 ;i++ )
-        {
-            printf("%d ",vector2[i]);
-        }
-        printf("\n");
-
-    printf("%10c",' ');
-    for (int i = 0;i<10 ;i++ )
-    {
-        for (int j=0;j<10 ;j++ )
-        {
-            if (vector1[i] == vector2[j])
-            {
-                    printf("%d ",vector1[i]);
+        for (i = 0; i < 10; i++) {
+            repetido = 0;
+            for (j = 0; j < k; j++) {
+                if (vector2[i] == unionVector[j]) {
+                repetido = 1;
+                break;
+                }
+            }
+            if (!repetido) {
+                unionVector[k] = vector2[i];
+                k++;
             }
         }
-    }
-}*/
+        barra_arriba_1();
+        printf("%16c",' ');
+        printf("UNION DE VECTORES\n");
+        barra_abajo_1();
+        printf("%12c",' ');
+        for (i = 0; i < 10; i++) {
+            printf("%d ", unionVector[i]);
+        }
+}
 
-/*void cuarta_opcion (int vector1[10],int vector2[10]){
+void cuarta_opcion (int vector1[10],int vector2[10]){
 
-}*/
+// Mostrar la intersección de vectores
+    int i,j,k,repetido;
+    int interseccionVector[10];
+
+    k = 0;
+
+        for (i = 0; i < 10; i++) {
+                for (j = 0; j < 10; j++) {
+                    if (vector1[i] == vector2[j]) {
+                    repetido = 0;
+                for (int x = 0; x < k; x++) { // Verificar si ya está en la lista de intersección
+                    if (vector1[i] == interseccionVector[x]) {
+                    repetido = 1;
+                    break;
+                    }
+                }
+                if (!repetido) {
+                    interseccionVector[k] = vector1[i];
+                    k++;
+                }
+                break;
+                    }
+                }
+        }
+        barra_arriba_1();
+        printf("%16c",' ');
+        printf("INTERSECCION DE VECTORES\n");
+        barra_abajo_1();
+        printf("%16c",' ');
+        for (i = 0; i < k; i++) {
+        printf("%d ", interseccionVector[i]);
+        }
+}
 
 void quinta_opcion(int vector1[10],int vector2[10]){
 
@@ -302,10 +342,10 @@ int main(){
                     segunda_opcion(vector1,vector2);
                     break;
                 case 3:
-                    printf("En construccion");
+                    tercera_opcion(vector1,vector2);
                     break;
                 case 4:
-                    printf("En construccion");
+                    cuarta_opcion(vector1,vector2);
                     break;
                 case 5:
                     quinta_opcion(vector1,vector2);
